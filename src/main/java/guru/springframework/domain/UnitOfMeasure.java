@@ -12,18 +12,10 @@ public class UnitOfMeasure {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String uom;
+	private String description;
 
 	public UnitOfMeasure() {
 		super();
-	}
-
-	public String getUom() {
-		return uom;
-	}
-
-	public void setUom(String uom) {
-		this.uom = uom;
 	}
 
 	public Long getId() {
@@ -33,4 +25,14 @@ public class UnitOfMeasure {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 }
