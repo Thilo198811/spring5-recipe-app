@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Ingredient {
@@ -25,6 +26,9 @@ public class Ingredient {
 	// So ingredient contains the foreign key to the recipe
 	@ManyToOne
 	private Recipe recipe;
+	
+	@OneToOne
+	private UnitOfMeasure uom;
 	
 	public Long getId() {
 		return id;
@@ -50,5 +54,12 @@ public class Ingredient {
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
+	public UnitOfMeasure getUom() {
+		return uom;
+	}
+	public void setUom(UnitOfMeasure uom) {
+		this.uom = uom;
+	}
+	
 	
 }
