@@ -2,6 +2,7 @@ package guru.springframework.domain;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,7 +11,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -28,7 +32,7 @@ public class Recipe {
 	private String directions;
 	
 	// mappedBy refers to the foreign key attribute of the ingredient entity 
-	// to the recipe entity in order to establish a bidirectional relation
+	// in order to establish a bidirectional relation
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
 	private List<Ingredient> ingredients;
 	
@@ -42,6 +46,12 @@ public class Recipe {
 
 	@Enumerated(value = EnumType.STRING)
 	private Difficulty difficulty;
+	
+	@ManyToMany
+	@JoinTable( name = "recipe_category",
+			joinColumns = @JoinColumn(name = "recipe_id"),
+			inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories;
 	
 	public Long getId() {
 		return id;
@@ -130,8 +140,6 @@ public class Recipe {
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
-
-	
 	
 	public Difficulty getDifficulty() {
 		return difficulty;
@@ -139,6 +147,14 @@ public class Recipe {
 
 	public void setDifficulty(Difficulty difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
 	}
 
 	@Override
