@@ -18,7 +18,7 @@ public class Notes {
 	@Lob
 	private String recipeNotes;
 	@OneToOne
-	private String recipe;
+	private Recipe recipe;
 	
 	public Notes() {
 		super();
@@ -36,10 +36,10 @@ public class Notes {
 	public void setRecipeNotes(String recipeNotes) {
 		this.recipeNotes = recipeNotes;
 	}
-	public String getRecipe() {
+	public Recipe getRecipe() {
 		return recipe;
 	}
-	public void setRecipe(String recipe) {
+	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
 	}
 

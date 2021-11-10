@@ -1,5 +1,6 @@
 package guru.springframework.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -22,9 +24,17 @@ public class Recipe {
 	private String source;
 	private String urls;
 	private String directions;
+	
+	// mappedBy refers to the foreign key attribute of the ingredient entity 
+	// to the recipe entity in order to establish a bidirectional relation
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+	private List<Ingredient> ingredients;
+	
 	@Lob
 	private byte[] image;
 	
+	// All operation on Recipe should be propagated to notes
+	// E.g. Deleting recipe will cause that notes is deleted as well
 	@OneToOne(cascade = CascadeType.ALL)
 	private Notes notes;
 
@@ -106,6 +116,16 @@ public class Recipe {
 
 	public void setNotes(Notes notes) {
 		this.notes = notes;
+	}
+
+	
+	
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	@Override
