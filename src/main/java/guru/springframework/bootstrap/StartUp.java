@@ -58,12 +58,12 @@ public class StartUp implements CommandLineRunner {
 		
 		Recipe r11 = recipeRepository.findById(r1.getId()).get();
 		System.out.println("Get back from Repo: " + r11.getIngredients().iterator().next());
-		//System.out.println("Amount of ingredients: " + r11.getIngredients().size());
+		recipeRepository.save(r1);
+
 		
-//		Recipe r2 = new Recipe();
-//		r2.setDescripxtion("Currywurst");
-//		recipeRepository.save(r1);
-//		recipeRepository.save(r2);
+		Recipe r2 = new Recipe();
+		r2.setDescription("Currywurst");
+		recipeRepository.save(r2);
 	}
 
 }
