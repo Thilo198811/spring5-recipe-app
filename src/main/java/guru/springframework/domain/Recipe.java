@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +35,7 @@ public class Recipe {
 	
 	// mappedBy refers to the foreign key attribute of the ingredient entity 
 	// in order to establish a bidirectional relation
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe", fetch = FetchType.EAGER)
 	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	@Lob
@@ -55,6 +55,11 @@ public class Recipe {
 			inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private List<Category> categories = new ArrayList<>();
 	
+	
+	public Recipe() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}
