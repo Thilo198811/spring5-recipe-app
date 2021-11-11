@@ -11,11 +11,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Ingredient {
-	
-	public Ingredient() {
-		
-	}
-	
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -29,6 +26,17 @@ public class Ingredient {
 	
 	@OneToOne
 	private UnitOfMeasure uom;
+	
+	public Ingredient() {
+		
+	}
+	
+	public Ingredient(BigDecimal amount, String description, UnitOfMeasure uom) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.uom = uom;
+	}
 	
 	public Long getId() {
 		return id;

@@ -17,6 +17,15 @@ public class UnitOfMeasure {
 	public UnitOfMeasure() {
 		super();
 	}
+	
+	
+
+	public UnitOfMeasure(String description) {
+		super();
+		this.description = description;
+	}
+
+
 
 	public Long getId() {
 		return id;

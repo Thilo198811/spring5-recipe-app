@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -24,6 +22,11 @@ public class Category {
 		super();
 	}
 	
+	public Category(String description) {
+		super();
+		this.description = description;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -34,10 +37,15 @@ public class Category {
 	public Set<Recipe> getRecipes() {
 		return recipes;
 	}
+	
 	public void setRecipes(Set<Recipe> recipes) {
 		this.recipes = recipes;
 	}
-
+	
+	public void addRecipe(Recipe recipe) {
+		recipes.add(recipe);
+	}
+	
 	public String getDescription() {
 		return description;
 	}
@@ -45,9 +53,4 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
-	
-	
 }

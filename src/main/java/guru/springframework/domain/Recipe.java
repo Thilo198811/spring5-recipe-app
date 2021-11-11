@@ -1,5 +1,7 @@
 package guru.springframework.domain;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -34,7 +36,7 @@ public class Recipe {
 	// mappedBy refers to the foreign key attribute of the ingredient entity 
 	// in order to establish a bidirectional relation
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-	private List<Ingredient> ingredients;
+	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	@Lob
 	private byte[] image;
@@ -51,7 +53,7 @@ public class Recipe {
 	@JoinTable( name = "recipe_category",
 			joinColumns = @JoinColumn(name = "recipe_id"),
 			inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private Set<Category> categories;
+	private List<Category> categories = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -130,6 +132,7 @@ public class Recipe {
 	}
 
 	public void setNotes(Notes notes) {
+		notes.setRecipe(this);
 		this.notes = notes;
 	}	
 	
@@ -149,14 +152,24 @@ public class Recipe {
 		this.difficulty = difficulty;
 	}
 
-	public Set<Category> getCategories() {
+	public List<Category> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(Set<Category> categories) {
+	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
+	public void addIngredient(BigDecimal amount, String description, UnitOfMeasure uom) {
+		Ingredient ingredient = new Ingredient(amount, description, uom);
+		ingredient.setRecipe(this);
+		this.ingredients.add(ingredient);
+	}
+	
+	public void addCategory(Category category) {
+		this.categories.add(category);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

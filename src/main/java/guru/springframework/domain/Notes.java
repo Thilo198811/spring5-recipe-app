@@ -24,6 +24,11 @@ public class Notes {
 		super();
 	}
 	
+	public Notes(String recipeNotes) {
+		super();
+		this.recipeNotes = recipeNotes;
+	}
+
 	public Long getId() {
 		return id;
 	}
