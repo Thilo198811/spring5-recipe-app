@@ -1,6 +1,8 @@
 package guru.springframework.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import guru.springframework.repository.RecipeRepository;
 public class RecipeServiceTest {
 	
 	private RecipeService recipeService;
-	//private RecipeRepository recipeRepository = Mockito.mock(RecipeRepository.class);
+
 	@Mock
 	private RecipeRepository recipeRepository;
 	
@@ -37,6 +39,9 @@ public class RecipeServiceTest {
 		List<Recipe> recipes = recipeService.getRecipes();
 		
 		assertEquals(1, recipes.size());
+		
+		// Verify that findAll of repository was called exactly one time
+		verify(recipeRepository, times(1)).findAll();
 	}
 
 }
