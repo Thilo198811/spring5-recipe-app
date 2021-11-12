@@ -26,10 +26,18 @@
 					    <tr>
 					        <th>ID</th>
 					        <th>Description</th>
+					        <th>Difficulty</th>
+					        <th>Ingredients</th>
 					    </tr>
 					    <tr th:each="recipe : ${recipes}">
 					        <td th:text="${recipe.id}">123</td>
 					        <td th:text="${recipe.description}">Tasty Goodnees</td>
+					        <td th:text="${recipe.difficulty}">Difficulty</td>
+					        <td>
+						        <ul>
+	       							<li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.description}">Item description here...</li>
+	   							 </ul>
+					        </td>
 					    </tr>
 					</table>
 				</div>
