@@ -62,6 +62,7 @@ public class RecipeControllerTest {
 		when(recipeService.getRecipes()).thenReturn(recipes);
 		
 		// Create captor of type list
+		// purpose of a captor is to capture the passed argument to a mock 
 		ArgumentCaptor<List<Recipe>> captor = ArgumentCaptor.forClass(List.class);
 		
 		
@@ -75,6 +76,7 @@ public class RecipeControllerTest {
 		
 		// Compare if the recipes returned by the service ( mock) are added to the model
 		assertEquals(recipes, captor.getValue());
+		assertEquals(3, captor.getValue().size());
 		
 	}	
 
