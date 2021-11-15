@@ -24,6 +24,7 @@
 		<java.version>1.8</java.version>
 		<sonar.organization>thilo198811</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  		<sonar.token>f03f279d1731a42dd3a27a75dd2ef29879c82844</sonar.token>
 	</properties>
 
 	<dependencies>
@@ -89,6 +90,25 @@
 					</execution>
 				</executions>
 			</plugin>
+			   <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-code-coverage-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 

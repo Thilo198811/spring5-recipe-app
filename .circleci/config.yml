@@ -41,6 +41,8 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar -Dsonar.projectKey=Thilo198811_spring5-recipe-app
+      - store_artifacts:
+          path: target/site/jacoco/index.html
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
