@@ -57,7 +57,7 @@ public class StartUp implements CommandLineRunner {
 		recipeRepository.save(r1);
 		
 		Recipe r11 = recipeRepository.findById(r1.getId()).orElseThrow(() -> new IllegalArgumentException());
-		System.out.println("Get back from Repo: " + r11.getIngredients().iterator().next());
+		logger.info("Get back from Repo: {}", r11.getIngredients().iterator().next());
 		recipeRepository.save(r1);
 
 		
