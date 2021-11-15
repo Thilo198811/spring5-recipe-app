@@ -20,7 +20,7 @@ public class RecipeService {
 	
 	public List<Recipe> getRecipes() {
 		final List<Recipe> list = new ArrayList<>();
-		recipeRepository.findAll().forEach(r -> list.add(r));
+		recipeRepository.findAll().forEach(list::add);
 		return list;
 	}
 	

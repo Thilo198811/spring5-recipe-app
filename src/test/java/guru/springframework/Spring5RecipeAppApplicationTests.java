@@ -1,6 +1,6 @@
 package guru.springframework;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +18,7 @@ public class Spring5RecipeAppApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertTrue(ctx != null);
+		assertNotNull(ctx);
 	}
 
 }

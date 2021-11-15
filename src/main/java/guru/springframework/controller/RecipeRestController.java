@@ -21,9 +21,8 @@ public class RecipeRestController {
 
 	@GetMapping("rest/recipes")
 	public List<RecipeDto> getRecipes() {
-		List<RecipeDto> list = recipeService.getRecipes().stream()
+		return recipeService.getRecipes().stream()
 				.map(r -> new RecipeDto(r.getId(), r.getDescription()))
 				.collect(Collectors.toList());
-		return list;		
 	}
 }
