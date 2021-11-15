@@ -12,7 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class UnitOfMeasureRepositoryIT {
+class UnitOfMeasureRepositoryIT {
 	
 	@Autowired
 	private UnitOfMeasureRepository unitOfMeasureRepository;
@@ -23,12 +23,12 @@ public class UnitOfMeasureRepositoryIT {
 	}
 	
 	@Test
-	public void testWhenFindByValidDescription_ThenReturnDescription() {
+	void testWhenFindByValidDescription_ThenReturnDescription() {
 		assertEquals("Teaspoon", unitOfMeasureRepository.findByDescription("Teaspoon").get().getDescription());
 	}
 	
 	@Test
-	public void testWhenFindByInvalidDescription_ThenOptionalHoldsNoElement() {
+	void testWhenFindByInvalidDescription_ThenOptionalHoldsNoElement() {
 		assertFalse(unitOfMeasureRepository.findByDescription("Teaspoonss").isPresent());
 	}
 }

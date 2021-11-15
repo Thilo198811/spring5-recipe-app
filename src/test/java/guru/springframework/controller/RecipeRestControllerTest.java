@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import guru.springframework.service.RecipeService;
 
-public class RecipeRestControllerTest {
+class RecipeRestControllerTest {
 	
 	private RecipeRestController recipeRestController;
 	@Mock

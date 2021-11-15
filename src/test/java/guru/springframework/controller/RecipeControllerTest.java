@@ -26,7 +26,7 @@ import org.springframework.ui.Model;
 import guru.springframework.domain.Recipe;
 import guru.springframework.service.RecipeService;
 
-public class RecipeControllerTest {
+class RecipeControllerTest {
 	
 	private RecipeController recipeController;
 	

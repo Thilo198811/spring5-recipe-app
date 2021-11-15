@@ -16,7 +16,7 @@ import org.mockito.MockitoAnnotations;
 import guru.springframework.domain.Recipe;
 import guru.springframework.repository.RecipeRepository;
 
-public class RecipeServiceTest {
+class RecipeServiceTest {
 	
 	private RecipeService recipeService;
 
