@@ -43,7 +43,7 @@ public class RecipeControllerTest {
 	}
 	
 	@Test
-	public void testWhenGetRecipes_thenStringRecipeIsReturnedAndServiceWasCalledOneTime() {
+	void testWhenGetRecipes_thenStringRecipeIsReturnedAndServiceWasCalledOneTime() {
 		List<Recipe> recipes = new ArrayList<>();
 		recipes.add(new Recipe());
 		recipes.add(new Recipe());
@@ -58,7 +58,7 @@ public class RecipeControllerTest {
 	
 	// With argument catcher
 	@Test
-	public void testWhenGetRecipes_thenTheRecipesReturnedByServiceAreAddedToModel() {
+	void testWhenGetRecipes_thenTheRecipesReturnedByServiceAreAddedToModel() {
 		// Given , configure mocks
 		List<Recipe> recipes = new ArrayList<>();
 		recipes.add(new Recipe());
@@ -87,7 +87,7 @@ public class RecipeControllerTest {
 	}
 	
 	@Test
-	public void testMockMvc() throws Exception {
+	void testMockMvc() throws Exception {
 		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
 		
 		mockMvc.perform(get("/"))

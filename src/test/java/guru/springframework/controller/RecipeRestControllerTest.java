@@ -26,7 +26,7 @@ public class RecipeRestControllerTest {
 	}
 	
 	@Test
-	public void testRecipeControllerReturns200() throws Exception {
+	void testRecipeControllerReturns200() throws Exception {
 		MockMvc mockmvc = MockMvcBuilders.standaloneSetup(recipeRestController).build();
 		mockmvc.perform(get("/rest/recipes")).andExpect(status().is2xxSuccessful());
 	}

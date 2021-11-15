@@ -31,7 +31,7 @@ public class RecipeServiceTest {
 		
 
 	@Test
-	public void testGetRecipes() {
+	void testGetRecipes() {
 		List<Recipe> recipeDummyData = new ArrayList<>();
 		recipeDummyData.add(new Recipe());
 		when(recipeRepository.findAll()).thenReturn(recipeDummyData);

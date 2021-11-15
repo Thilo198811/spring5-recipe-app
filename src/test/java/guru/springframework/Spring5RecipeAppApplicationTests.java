@@ -17,7 +17,7 @@ public class Spring5RecipeAppApplicationTests {
 	private ApplicationContext ctx;
 
 	@Test
-	public void contextLoads() {
+	void contextLoads() {
 		assertTrue(ctx != null);
 	}
 
