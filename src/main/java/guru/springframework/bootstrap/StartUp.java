@@ -41,10 +41,10 @@ public class StartUp implements CommandLineRunner {
 	}
 	
 	private void initRecipes() {
-		UnitOfMeasure kg = unitOfMeasureRepository.findByDescription("kg").get();
-		UnitOfMeasure teaspoon = unitOfMeasureRepository.findByDescription("Teaspoon").get();
-		Category fastfood = categoryRepository.findByDescription("Fast Food").get();
-		Category belgium = categoryRepository.findByDescription("Belgium").get();
+		UnitOfMeasure kg = unitOfMeasureRepository.findByDescription("kg").orElseThrow(() -> new IllegalArgumentException());
+		UnitOfMeasure teaspoon = unitOfMeasureRepository.findByDescription("Teaspoon").orElseThrow(() -> new IllegalArgumentException());
+		Category fastfood = categoryRepository.findByDescription("Fast Food").orElseThrow(() -> new IllegalArgumentException());
+		Category belgium = categoryRepository.findByDescription("Belgium").orElseThrow(() -> new IllegalArgumentException());
 		Recipe r1 = new Recipe();
 		r1.setDescription("Muscheln mit Pom Frites");
 		r1.setDifficulty(Difficulty.MODERATE);
@@ -56,7 +56,7 @@ public class StartUp implements CommandLineRunner {
 		r1.setNotes(new Notes("Lorem Ipsum"));
 		recipeRepository.save(r1);
 		
-		Recipe r11 = recipeRepository.findById(r1.getId()).get();
+		Recipe r11 = recipeRepository.findById(r1.getId()).orElseThrow(() -> new IllegalArgumentException());
 		System.out.println("Get back from Repo: " + r11.getIngredients().iterator().next());
 		recipeRepository.save(r1);
 
