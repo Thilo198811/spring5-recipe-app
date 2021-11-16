@@ -3,10 +3,11 @@ spring:
     url: jdbc:mysql://mysql:3306/recipe-db
     username: user
     password: password
-    initialization-mode: always
+    
   jpa:
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: true
+ 
