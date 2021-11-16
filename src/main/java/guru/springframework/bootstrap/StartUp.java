@@ -40,7 +40,9 @@ public class StartUp implements CommandLineRunner {
 		initRecipes();
 	}
 	
-	private void initRecipes() {
+	private void initRecipes() throws InterruptedException {
+		logger.info("Initialize recipes");
+		Thread.sleep(10000);
 		UnitOfMeasure kg = unitOfMeasureRepository.findByDescription("kg").orElseThrow(IllegalArgumentException::new);
 		UnitOfMeasure teaspoon = unitOfMeasureRepository.findByDescription("Teaspoon").orElseThrow(IllegalArgumentException::new);
 		Category fastfood = categoryRepository.findByDescription("Fast Food").orElseThrow(IllegalArgumentException::new);

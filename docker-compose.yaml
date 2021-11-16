@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  ###
+  recipe-service:
+    image: recipe-service:latest
+    mem_limit: 700m
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+    networks:
+      - my_network
+    depends_on:
+      - mysql
+  mysql: 
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: recipe-db
+    ports:
+     - "3306:3306"
+    networks:
+     - my_network
+networks:
+  my_network:
