@@ -13,6 +13,7 @@ services:
       - my_network
     depends_on:
       - mysql
+  
   mysql: 
     image: mysql:latest
     restart: always
@@ -25,5 +26,8 @@ services:
      - "3306:3306"
     networks:
      - my_network
+    #volumes:
+    # - /var/lib/mysql 
+    
 networks:
   my_network:
