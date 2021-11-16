@@ -2,6 +2,7 @@ package guru.springframework.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,10 @@ public class RecipeService {
 		final List<Recipe> list = new ArrayList<>();
 		recipeRepository.findAll().forEach(list::add);
 		return list;
+	}
+	
+	public Optional<Recipe> getRecipeById(Long id) {
+		return recipeRepository.findById(id);
 	}
 	
 }

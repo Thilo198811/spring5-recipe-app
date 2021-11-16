@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import guru.springframework.contract.RecipeDto;
@@ -24,5 +25,12 @@ public class RecipeRestController {
 		return recipeService.getRecipes().stream()
 				.map(r -> new RecipeDto(r.getId(), r.getDescription()))
 				.collect(Collectors.toList());
+	}
+	
+	@GetMapping("rest/recipes/{id}")
+	public RecipeDto getRecipeById(@PathVariable Long id) {
+		return recipeService.getRecipeById(id)
+				.map(r -> new RecipeDto(r.getId(), r.getDescription()))
+				.orElseThrow(IllegalArgumentException::new);
 	}
 }
