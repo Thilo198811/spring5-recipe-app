@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Ingredient {
@@ -19,6 +20,8 @@ public class Ingredient {
 	private Long id;
 	private BigDecimal amount;
 	private String description;
+	@Transient
+	private boolean availabilityInShop;
 	
 	// Ingredient entity is owner of relation with recipe
 	// So ingredient contains the foreign key to the recipe
@@ -69,6 +72,16 @@ public class Ingredient {
 	public void setUom(UnitOfMeasure uom) {
 		this.uom = uom;
 	}
+
+	public boolean isAvailabilityInShop() {
+		return availabilityInShop;
+	}
+
+	public void setAvailabilityInShop(boolean availabilityInShop) {
+		this.availabilityInShop = availabilityInShop;
+	}
+	
+	
 	
 	
 }

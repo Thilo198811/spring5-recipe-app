@@ -19,6 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Recipe {
@@ -32,7 +33,7 @@ public class Recipe {
 	private String source;
 	private String urls;
 	private String directions;
-	
+
 	// mappedBy refers to the foreign key attribute of the ingredient entity 
 	// in order to establish a bidirectional relation
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe", fetch = FetchType.EAGER)

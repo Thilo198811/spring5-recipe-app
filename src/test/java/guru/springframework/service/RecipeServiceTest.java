@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import guru.springframework.domain.Recipe;
+import guru.springframework.proxy.IngredientShopProxyClassic;
 import guru.springframework.repository.RecipeRepository;
 
 class RecipeServiceTest {
@@ -23,10 +24,13 @@ class RecipeServiceTest {
 	@Mock
 	private RecipeRepository recipeRepository;
 	
+	@Mock
+	private IngredientShopProxyClassic proxy;
+	
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		recipeService = new RecipeService(recipeRepository);
+		recipeService = new RecipeService(recipeRepository, proxy);
 	}
 		
 
