@@ -1,9 +1,12 @@
 package guru.springframework.service;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import guru.springframework.contract.ItemDto;
@@ -17,6 +20,7 @@ public class RecipeService {
 
 	private final RecipeRepository recipeRepository;
 	private final IngredientShopProxyClassic proxy;
+	private final Logger logger = LoggerFactory.getLogger(RecipeService.class);
 
 	public RecipeService(RecipeRepository recipeRepository, IngredientShopProxyClassic proxy) {
 		super();
@@ -43,9 +47,14 @@ public class RecipeService {
 	
 	private Ingredient attachIngredientAvailability(Ingredient ingredient) {
 		final Ingredient ingredientWithAvailability = ingredient;
-		proxy.getAllItems().stream()
-		.filter(item -> item.getDescription().equals(ingredientWithAvailability.getDescription())).findFirst()
-		.ifPresent(item -> ingredientWithAvailability.setAvailabilityInShop(isAvailable(item)));
+		try {
+			proxy.getAllItems().stream()
+			.filter(item -> item.getDescription().equals(ingredientWithAvailability.getDescription())).findFirst()
+			.ifPresent(item -> ingredientWithAvailability.setAvailabilityInShop(isAvailable(item)));
+		} catch (Exception e) {
+			logger.warn("Shop not available - set default value");
+			ingredientWithAvailability.setAvailabilityInShop(false);
+		}
 		return ingredientWithAvailability;
 	}
 	
