@@ -1,5 +1,6 @@
 package guru.springframework.service;
 
+import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,6 +11,7 @@ import static org.mockito.Mockito.when;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,12 +70,10 @@ class RecipeServiceTest {
 		recipe.setIngredients(ingredients);
 		recipeRepoDummyData.add(recipe);
 		
-		List<ItemDto> itemDummyData = new ArrayList<>();
-		itemDummyData.add(new ItemDto(0L, "Wurst", 3.0, 1));
-		itemDummyData.add(new ItemDto(1L, "Curry", 3.0, 0));
-		
 		when(recipeRepository.findAll()).thenReturn(recipeRepoDummyData);
-		when(proxy.getAllItems()).thenReturn(itemDummyData);
+		when(proxy.getItemByDescription("Wurst")).thenReturn(Optional.ofNullable(new  ItemDto(0L, "Wurst", 3.0, 1)));
+		when(proxy.getItemByDescription("Curry")).thenReturn(Optional.ofNullable(new  ItemDto(0L, "C", 3.0, 0)));
+
 		
 		// When
 		List<Recipe> recipes = recipeService.getRecipes();
@@ -98,7 +98,9 @@ class RecipeServiceTest {
 		recipeRepoDummyData.add(recipe);
 		
 		when(recipeRepository.findAll()).thenReturn(recipeRepoDummyData);
-		when(proxy.getAllItems()).thenThrow(RuntimeException.class);
+		when(proxy.getItemByDescription("Wurst")).thenThrow(RuntimeException.class);
+		when(proxy.getItemByDescription("Curry")).thenThrow(RuntimeException.class);
+
 		
 		// When
 		List<Recipe> recipes = recipeService.getRecipes();

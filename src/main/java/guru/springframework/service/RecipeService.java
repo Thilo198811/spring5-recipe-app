@@ -48,9 +48,7 @@ public class RecipeService {
 	private Ingredient attachIngredientAvailability(Ingredient ingredient) {
 		final Ingredient ingredientWithAvailability = ingredient;
 		try {
-			proxy.getAllItems().stream()
-			.filter(item -> item.getDescription().equals(ingredientWithAvailability.getDescription())).findFirst()
-			.ifPresent(item -> ingredientWithAvailability.setAvailabilityInShop(isAvailable(item)));
+			proxy.getItemByDescription(ingredient.getDescription()).ifPresent(item -> ingredient.setAvailabilityInShop(isAvailable(item)));
 		} catch (Exception e) {
 			logger.warn("Shop not available - set default value");
 			ingredientWithAvailability.setAvailabilityInShop(false);
