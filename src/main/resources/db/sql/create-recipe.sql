@@ -1,0 +1,1 @@
+create table recipe (id bigint not null auto_increment, cook_time integer, description varchar(255), difficulty varchar(255), directions longtext, image longblob, prep_time integer, servings integer, source varchar(255), urls varchar(255), notes_id bigint, primary key (id));

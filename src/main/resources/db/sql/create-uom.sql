@@ -1,0 +1,1 @@
+create table unit_of_measure (id bigint not null auto_increment, description varchar(255), primary key (id));

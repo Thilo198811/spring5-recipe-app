@@ -1,0 +1,1 @@
+create table recipe_category (recipe_id bigint not null, category_id bigint not null, primary key (recipe_id, category_id));

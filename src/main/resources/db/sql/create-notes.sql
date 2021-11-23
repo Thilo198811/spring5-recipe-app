@@ -1,0 +1,1 @@
+create table notes (id bigint not null auto_increment, recipe_notes longtext, recipe_id bigint, primary key (id));
