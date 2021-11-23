@@ -8,12 +8,22 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: mysql
+      #SPRING_PROFILES_ACTIVE: mysql
+      - INGREDIENTSHOP-PROXY_ENDPOINT=http://ingredient-shop:8081
     networks:
       - my_network
-    depends_on:
-      - mysql
-  
+    #depends_on:
+    #  - mysql
+
+  ingredient-shop:
+    image: ingredient-shop:latest
+    mem_limit: 700m
+    ports:
+      - "8081:8081"
+
+    networks:
+      - my_network
+
   mysql: 
     image: mysql:latest
     restart: always

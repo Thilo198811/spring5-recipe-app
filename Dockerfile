@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
-COPY target/spring5-recipe-app-0.0.2-SNAPSHOT.jar spring5-recipe-app-0.0.2-SNAPSHOT.jar
+COPY target/recipe-service.jar recipe-service.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/spring5-recipe-app-0.0.2-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/recipe-service.jar"]
