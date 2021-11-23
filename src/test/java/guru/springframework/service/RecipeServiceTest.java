@@ -1,6 +1,5 @@
 package guru.springframework.service;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
