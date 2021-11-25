@@ -3,6 +3,7 @@ package guru.springframework.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,5 +44,10 @@ public class RecipeRestController {
 		return recipeService.getRecipeById(id)
 				.map(r -> new RecipeDto(r.getId(), r.getDescription(), getIngredientDtos(r)))
 				.orElseThrow(IllegalArgumentException::new);
+	}
+	
+	@DeleteMapping("rest/recipes/{id}")
+	public void deleteRecipeById(@PathVariable Long id) {
+		recipeService.deleteRecipeById(id);
 	}
 }

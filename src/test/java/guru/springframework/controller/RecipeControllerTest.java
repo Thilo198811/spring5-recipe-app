@@ -93,6 +93,5 @@ class RecipeControllerTest {
 			.andExpect(status().is2xxSuccessful())
 			.andExpect(view().name("recipe"));
 	}
-	
 
 }

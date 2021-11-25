@@ -59,4 +59,8 @@ public class RecipeService {
 		return item.getAvailability() > 0;
 	}
 	
+	public void deleteRecipeById(Long id) {
+		recipeRepository.deleteById(id);
+	}
+	
 }

@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -108,7 +109,19 @@ class RecipeServiceTest {
 		// Then
 		assertFalse(recipes.get(0).getIngredients().get(0).isAvailabilityInShop()); // Wurst
 		assertFalse(recipes.get(0).getIngredients().get(1).isAvailabilityInShop()); // Curry
+	}
+	
+	@Test
+	void testWhenDeleteRecipe_thenRepoIsCalled() {
+		ArgumentCaptor<Long> captor = ArgumentCaptor.forClass(Long.class);
 
+		// When
+		recipeService.deleteRecipeById(1L);
+		
+		// Then
+		verify(recipeRepository, times(1)).deleteById(captor.capture());
+		
+		assertEquals(Long.valueOf(1), captor.getValue());		
 	}
 	
 

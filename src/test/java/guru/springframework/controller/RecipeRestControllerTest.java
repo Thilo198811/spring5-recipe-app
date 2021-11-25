@@ -1,6 +1,7 @@
 package guru.springframework.controller;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -12,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import guru.springframework.domain.Recipe;
@@ -60,6 +60,13 @@ class RecipeRestControllerTest {
 		// When / Then
 		mockmvc.perform(get("/rest/recipes/1")).andExpect(content().json("{\n"
 				+ "  \"id\": 1}"));
+	}
+	
+	@Test
+	void testDeleteRecipeController() throws Exception {
+		MockMvc mockmvc = MockMvcBuilders.standaloneSetup(recipeRestController).build();
+
+		mockmvc.perform(delete("/rest/recipes/1")).andExpect(status().is2xxSuccessful());
 	}
 
 }
