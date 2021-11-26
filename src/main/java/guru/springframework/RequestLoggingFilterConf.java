@@ -6,7 +6,8 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @Configuration
 public class RequestLoggingFilterConf {
-    @Bean
+    
+	@Bean
     public CommonsRequestLoggingFilter logFilter() {
         CommonsRequestLoggingFilter filter
           = new CommonsRequestLoggingFilter();
@@ -17,5 +18,4 @@ public class RequestLoggingFilterConf {
         filter.setAfterMessagePrefix("REQUEST DATA : ");
         return filter;
     }
-
 }
