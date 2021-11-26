@@ -13,6 +13,7 @@ import guru.springframework.contract.RecipeDto;
 import guru.springframework.domain.Ingredient;
 import guru.springframework.domain.Recipe;
 import guru.springframework.service.RecipeService;
+import io.micrometer.core.annotation.Counted;
 
 @RestController
 public class RecipeRestController {
@@ -25,6 +26,7 @@ public class RecipeRestController {
 	}
 
 	@GetMapping("rest/recipes")
+	@Counted("request.all-recipes")
 	public List<RecipeDto> getRecipes() {
 		return recipeService.getRecipes().stream()
 				.map(r -> new RecipeDto(r.getId(), r.getDescription(), getIngredientDtos(r)))
@@ -40,6 +42,7 @@ public class RecipeRestController {
 	}
 	
 	@GetMapping("rest/recipes/{id}")
+	@Counted("request.get-recipe-by-id")
 	public RecipeDto getRecipeById(@PathVariable Long id) {
 		return recipeService.getRecipeById(id)
 				.map(r -> new RecipeDto(r.getId(), r.getDescription(), getIngredientDtos(r)))
@@ -47,6 +50,7 @@ public class RecipeRestController {
 	}
 	
 	@DeleteMapping("rest/recipes/{id}")
+	@Counted("request.delete-recipe-by-id")
 	public void deleteRecipeById(@PathVariable Long id) {
 		recipeService.deleteRecipeById(id);
 	}
